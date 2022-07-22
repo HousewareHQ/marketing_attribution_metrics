@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: transformed_hubspot
+    schema: transformed_stg_hubspot
+    tables:
+      - name: email_event
+        identifier: stg_hubspot__email_event
+      - name: email_campaign
+        identifier: stg_hubspot__email_campaign
+
+  - name: transformed_segment
+    schema: transformed
+    tables:
+      - name: tracks
+        identifier: segment__tracks
+      - name: identifies
+        identifier: segment__identifies

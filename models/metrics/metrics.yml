@@ -1,0 +1,13 @@
+version: 2
+
+metrics:
+  - name: weekly_email_to_product_events
+    label: Weekly Email to Product Events
+    model: ref('segment_tracks_hubspot_email_events_enriched')
+    description: "Weekly Email to Product Events"
+    type: count_distinct
+    sql: hubspot_event_id
+    timestamp: hubspot_created_timestamp
+    time_grains: [week]
+    filters: []
+    dimensions: []

@@ -1,0 +1,18 @@
+config-version: 2
+
+name: "marketing_attribution_metrics"
+version: "0.1.0"
+
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+models:
+  marketing_attribution_metrics:
+    +materialized: table
+
+vars:
+  marketing_attribution_metrics:
+    segment_tracks: "{{ source('transformed_segment', 'tracks') }}"
+    segment_identifies: "{{ source('transformed_segment', 'identifies') }}"
+    hubspot_email_event: "{{ source('transformed_hubspot', 'email_event') }}"
+    hubspot_email_campaign: "{{ source('transformed_hubspot', 'email_campaign') }}"
+    hubspot_email_event_filter__in: "('DELIVERED', 'OPEN')"
