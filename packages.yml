@@ -2,6 +2,9 @@ packages:
 - package: dbt-labs/metrics
   version: 0.1.5
 
+- package: dbt-labs/dbt_utils
+  version: [">=0.8.0", "<0.9.0"]
+
 - git: "https://github.com/HousewareHQ/dbt_segment_metrics.git"
   revision: v1.0.0
 

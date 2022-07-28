@@ -40,4 +40,5 @@ from
 
 where
     hubspot_email_event.event_type in {{ var('hubspot_email_event_filter__in') }}
-    and segment_tracks.timestamp > hubspot_email_event.created_timestamp
+    and {{ dbt_utils.datediff('hubspot_email_event.created_timestamp', 'segment_tracks.timestamp', var('hubspot_event_to_segment_event_time_interval')) }}
+        < {{ var('hubspot_event_to_segment_event_time') }}
