@@ -11,8 +11,29 @@ models:
 
 vars:
   marketing_attribution_metrics:
-    segment_tracks: "{{ source('transformed_segment', 'tracks') }}"
-    segment_identifies: "{{ source('transformed_segment', 'identifies') }}"
-    hubspot_email_event: "{{ source('transformed_hubspot', 'email_event') }}"
-    hubspot_email_campaign: "{{ source('transformed_hubspot', 'email_campaign') }}"
-    hubspot_email_event_filter__in: "('DELIVERED', 'OPEN')"
+    segment_tracks: "{{ ref('segment__tracks') }}"
+    segment_identifies: "{{ ref('segment__identifies') }}"
+    hubspot_email_event: "{{ ref('stg_hubspot__email_event') }}"
+    hubspot_email_campaign: "{{ ref('stg_hubspot__email_campaign') }}"
+    hubspot_email_event_filter__in: "('OPEN')"
+
+  hubspot_source:
+    hubspot_schema: fivetran_hubspot
+    hubspot_service_enabled: false
+    hubspot_sales_enabled: false
+
+    hubspot_marketing_enabled: true
+    hubspot_email_event_bounce_enabled: false
+    hubspot_email_event_click_enabled: false
+    hubspot_email_event_deferred_enabled: false
+    hubspot_email_event_delivered_enabled: true
+    hubspot_email_event_dropped_enabled: false
+    hubspot_email_event_forward_enabled: false
+    hubspot_email_event_opens_enabled: true
+    hubspot_email_event_print_enabled: false
+    hubspot_email_event_sent_enabled: true
+    hubspot_email_event_spam_report_enabled: false
+    hubspot_email_event_status_change_enabled: false
+
+  hubspot_metrics:
+    email_event: "ref('stg_hubspot__email_event')"
