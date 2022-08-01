@@ -9,5 +9,8 @@ metrics:
     sql: hubspot_event_id
     timestamp: hubspot_created_timestamp
     time_grains: [week]
-    filters: []
+    filters:
+      - field: segment_message_id
+        operator: 'is not'
+        value: 'null'
     dimensions: []
