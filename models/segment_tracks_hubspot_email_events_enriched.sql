@@ -23,6 +23,7 @@ hubspot_email_campaign as (
 select
     hubspot_email_event.created_timestamp as hubspot_created_timestamp,
     hubspot_email_event.event_id as hubspot_event_id,
+    hubspot_email_event.sent_by_event_id as hubspot_sent_by_event_id,
     hubspot_email_event.event_type as hubspot_event_type,
     concat(
         hubspot_email_campaign.email_campaign_id,
