@@ -4,6 +4,6 @@ select *
 from {{ metrics.metric(
     metric_name='weekly_email_to_product_events',
     grain='week',
-    dimensions=[],
+    dimensions=['hubspot_event_type', 'segment_event'],
     secondary_calculations=[]
 )}}

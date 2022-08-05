@@ -5,12 +5,14 @@ metrics:
     label: Weekly Email to Product Events
     model: ref('segment_tracks_hubspot_email_events_enriched')
     description: "Weekly emails sent which led to product events"
-    type: count_distinct
-    sql: hubspot_sent_by_event_id
+    type: count
+    sql: hubspot_event_id
     timestamp: hubspot_created_timestamp
     time_grains: [week]
     filters:
       - field: segment_message_id
         operator: 'is not'
         value: 'null'
-    dimensions: []
+    dimensions:
+      - hubspot_event_type
+      - segment_event

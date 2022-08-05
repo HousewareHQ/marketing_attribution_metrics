@@ -17,7 +17,7 @@ vars:
     hubspot_email_campaign: "{{ ref('stg_hubspot__email_campaign') }}"
     hubspot_email_event_filter__in: "('OPEN', 'CLICK')"
     hubspot_event_to_segment_event_time_interval: hour
-    hubspot_event_to_segment_event_time: 2
+    hubspot_event_to_segment_event_time_value: 2
 
   hubspot_source:
     hubspot_schema: fivetran_hubspot
