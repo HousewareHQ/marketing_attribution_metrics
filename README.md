@@ -17,7 +17,7 @@ This package contains transformed models built on top of [Houseware's Hubspot pa
 # 🎯 How do I use the dbt package?
 ## Step 1: Prerequisites
 To use this dbt package, you must have the following:
-- At least one Fivetran stripe connector and one Fivetran hubspot connector syncing data into your destination. 
+- At least one Fivetran hubspot connector and one Fivetran segment connector syncing data into your destination. 
 - A **BigQuery**, **Snowflake**, **Redshift**, or **PostgreSQL** destination.
 
 
@@ -35,7 +35,7 @@ packages:
 
 ## Step 3: Define database and schema variables
 
-By default, this package will look for your Hubspot data in the `fivetran_hubspot` schema of your [target database](https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/configure-your-profile). If this is not where your data is, please add the following configuration to your `dbt_project.yml` file:
+By default, this package will look for your Hubspot data in the `fivetran_hubspot` schema and Segment data in the `fivetran_segment` schema of your [target database](https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/configure-your-profile). If this is not where your data is, please add the following configuration to your `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
@@ -46,12 +46,15 @@ config-version: 2
 vars:
   hubspot_source:
     hubspot_schema: my_new_schema_name
+  
+  segment_metrics:
+    segment__schema: my_new_schema_name
 ```
 
-For additional configurations for the source models, please visit the [Hubspot source package](https://github.com/fivetran/dbt_hubspot_source).
+For additional configurations for the Hubspot source models, please visit the [Hubspot source package](https://github.com/fivetran/dbt_hubspot_source).
 
 ## (Optional) Step 4: Change build schema
-By default this package will build the Hubspot staging models within a schema titled (<target_schema> + `_stg_hubspot`) and the Hubspot metrics within a schema titled (<target_schema> + `_hubspot_metrics`) in your target database. If this is not where you would like your modeled Hubspot data to be written to, add the following configuration to your `dbt_project.yml` file:
+By default this package will build the Hubspot staging models within a schema titled (<target_schema> + `_stg_hubspot`) and the Hubspot metrics as well as Segment metrics within <target_schema> in your target database. If this is not where you would like your modeled Hubspot data to be written to, add the following configuration to your `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
@@ -61,6 +64,8 @@ models:
   hubspot_metrics:
     +schema: my_new_schema_name # leave blank for just the target_schema
   hubspot_source:
+    +schema: my_new_schema_name # leave blank for just the target_schema
+  segment_metrics:
     +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 
