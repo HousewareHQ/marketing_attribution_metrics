@@ -69,6 +69,14 @@ models:
     +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 
+## (Optional) Step 5: Override package variables
+```yml
+vars:
+  marketing_attribution_metrics:
+    hubspot_email_event_filter__in: "('OPEN', 'CLICK')" # add more hubspot events here, if needed
+    hubspot_event_to_segment_event_time_interval: hour # change this to any `datediff` interval (hour, day, year, etc)
+    hubspot_event_to_segment_event_time_value: 2 # interval value between segment events and hubspot events 
+```
 
 # 🗄 Which warehouses are supported?
 This package has been tested on Snowflake.

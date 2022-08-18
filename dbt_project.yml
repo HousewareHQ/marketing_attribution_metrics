@@ -15,9 +15,9 @@ vars:
     segment_identifies: "{{ ref('segment__identifies') }}"
     hubspot_email_event: "{{ ref('stg_hubspot__email_event') }}"
     hubspot_email_campaign: "{{ ref('stg_hubspot__email_campaign') }}"
-    hubspot_email_event_filter__in: "('OPEN', 'CLICK')"
-    hubspot_event_to_segment_event_time_interval: hour
-    hubspot_event_to_segment_event_time_value: 2
+    hubspot_email_event_filter__in: "('OPEN', 'CLICK')" # add more hubspot events here, if needed
+    hubspot_event_to_segment_event_time_interval: hour # change this to any `datediff` interval (hour, day, year, etc)
+    hubspot_event_to_segment_event_time_value: 2 # interval value between segment events and hubspot events
 
   hubspot_source:
     hubspot_schema: fivetran_hubspot
