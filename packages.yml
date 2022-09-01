@@ -9,4 +9,4 @@ packages:
   revision: v1.0.0
 
 - git: "https://github.com/HousewareHQ/dbt_hubspot_metrics.git"
-  revision: v0.1.0
+  revision: v0.2.0
