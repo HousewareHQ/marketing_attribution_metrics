@@ -14,5 +14,5 @@ metrics:
         operator: 'is not'
         value: 'null'
     dimensions:
-      - hubspot_event_calculation_method
+      - hubspot_event_type
       - segment_event
